@@ -27,13 +27,18 @@ namespace DDExcelReport
             var workbook = new Workbook();
             // テンプレートを読み込む
             workbook.Open(template_file);
-            
+            Workbook.FontsFolderPath=@"./Fonts";
             // データソースを追加
             workbook.AddDataSource("pubds", publisher);
             workbook.AddDataSource("ds", customerdata);
 
             // テンプレート処理を呼び出し
             workbook.ProcessTemplate();
+
+            foreach (var item in workbook.GetUsedFonts())
+            {
+                System.Console.WriteLine(item.Name.ToString());
+            }
 
             // Excelファイルに保存
             workbook.Save("result.xlsx");
