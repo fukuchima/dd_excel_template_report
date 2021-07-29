@@ -390,6 +390,6 @@ FodyWeavers.xsd
 .vscode
 result*.*
 DDLIC.cs
-Fonts/IBMPlexSansJP-Regular.otf
-Fonts/ipamp.ttf
+Fonts/*.otf
+Fonts/*.ttf
 .DS_Store

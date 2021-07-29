@@ -27,25 +27,21 @@ namespace DDExcelReport
             var workbook = new Workbook();
             // テンプレートを読み込む
             workbook.Open(template_file);
-            Workbook.FontsFolderPath=@"./Fonts";
+            Workbook.FontsFolderPath = @"./Fonts";
             // データソースを追加
-            workbook.AddDataSource("pubds", publisher);
-            workbook.AddDataSource("ds", customerdata);
+            workbook.AddDataSource("pubds", publisher); // 発行者データ
+            workbook.AddDataSource("ds", customerdata); // 顧客データ 
+            workbook.AddDataSource("Env", RuntimeInfo.getEnvironmentInfo()); // 備考欄に付加情報
 
             // テンプレート処理を呼び出し
             workbook.ProcessTemplate();
-
-            foreach (var item in workbook.GetUsedFonts())
-            {
-                System.Console.WriteLine(item.Name.ToString());
-            }
 
             // Excelファイルに保存
             workbook.Save("result.xlsx");
 
             // PDFファイルに保存
             workbook.Save("result.pdf", SaveFileFormat.Pdf);
-            
+
 
             // テンプレートを読み込んで退避
             var temp_workbook = new Workbook();
@@ -53,7 +49,7 @@ namespace DDExcelReport
             // 退避したテンプレートの各シートを結果ファイルの最後にコピーして追加
             foreach (var item in temp_workbook.Worksheets)
             {
-                item.CopyAfter(workbook.Worksheets[workbook.Worksheets.Count-1]);
+                item.CopyAfter(workbook.Worksheets[workbook.Worksheets.Count - 1]);
             }
             // テンプレートを追加してExcelファイルに保存
             workbook.Save("result_with_template.xlsx");
