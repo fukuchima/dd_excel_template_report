@@ -20,7 +20,7 @@ namespace DDExcelReport
             var template_file = "Templates/SimpleInvoiceJP_Template.xlsx";
 
             // ライセンスキー
-            // string key = DDLIC.Key_V4.Excel;
+            // string key = DDLIC.Key_V5.Excel;
             // Workbook.SetLicenseKey(key);
 
             // 新しいワークブックを生成
