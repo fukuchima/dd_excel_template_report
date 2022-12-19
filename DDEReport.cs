@@ -38,10 +38,11 @@ namespace DDExcelReport
 
             // Excelファイルに保存
             workbook.Save("result.xlsx");
+            System.Console.WriteLine("Excelファイル生成完了");
 
             // PDFファイルに保存
             workbook.Save("result.pdf", SaveFileFormat.Pdf);
-
+            System.Console.WriteLine("PDFファイル生成完了");
 
             // テンプレートを読み込んで退避
             var temp_workbook = new Workbook();
